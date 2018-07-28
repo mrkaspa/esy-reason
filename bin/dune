@@ -1,4 +1,4 @@
 (executable
-  (name Hello)
-  (public_name Hello)
-  (libraries lib))
+  (name Csv_Bin)
+  (public_name Csv_Bin)
+  (libraries lib core csv))

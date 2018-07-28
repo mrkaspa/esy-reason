@@ -1,5 +1,5 @@
 {
-  "name": "hello-reason",
+  "name": "csv_bin",
   "version": "0.1.0",
   "description": "Reason workflow with Esy",
   "license": "MIT",
@@ -12,7 +12,9 @@
     "@opam/lwt": "*",
     "@esy-ocaml/reason": "*",
     "refmterr": "*",
-    "ocaml": "~4.6.0"
+    "ocaml": "~4.6.0",
+    "@opam/core": "v0.11.1",
+    "@opam/csv": "2.1"
   },
   "devDependencies": {
     "@esy-ocaml/merlin": "*",
