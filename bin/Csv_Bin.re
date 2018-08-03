@@ -17,26 +17,26 @@ let headers = [
   "tipo",
 ];
 
-let get_key = (key, map) =>
+let getKey = (key, map) =>
   switch (String.Map.find(map, key)) {
   | Some(res) => res
   | None => ""
   };
 
 let getFromMap = map => (
-  get_key("zona", map),
-  get_key("hub", map),
-  get_key("precio_normal", map) |> int_of_string,
+  getKey("zona", map),
+  getKey("hub", map),
+  getKey("precio_normal", map) |> int_of_string,
 );
 
-let csv_transform = getFromMap << String.Map.of_alist_exn << Csv.Row.to_assoc;
+let csvTransform = getFromMap << String.Map.of_alist_exn << Csv.Row.to_assoc;
 
-let read_file = path => {
+let readFile = path => {
   let csv = Csv.Rows.load(~has_header=true, ~header=headers, path);
-  List.map(~f=csv_transform, csv);
+  List.map(~f=csvTransform, csv);
 };
 
-let get_path = () =>
+let getPath = () =>
   switch (Sys.argv) {
   | [|_, path|] => Some(path)
   | _ => None
@@ -44,10 +44,10 @@ let get_path = () =>
 
 let () = {
   print_string("executing...\n");
-  get_path()
+  getPath()
   |> Option.bind(~f=path => {
        print_string $ "Reading file " ++ path ++ "\n";
-       Some(read_file(path));
+       Some(readFile(path));
      })
   |> Option.bind(~f=csv => {
        printf("Result---CSV---------------------------------\n");
