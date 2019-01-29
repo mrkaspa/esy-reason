@@ -50,7 +50,7 @@ let () = {
        Some(readFile(path));
      })
   |> Option.bind(~f=csv => {
-       printf("Result---CSV---------------------------------\n");
+       printf("CSV--------------------------------->\n");
        List.iter(
          ~f=
            ((zona, hub, price)) =>
