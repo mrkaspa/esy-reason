@@ -1,18 +1,25 @@
-module type Sum = {
+module type Monoid = {
   type t;
-  let sumi: (t, t) => t;
+  let append: (t, t) => t;
 };
 
 module SumInt = {
   type t = int;
-  let sumi = (n, n) => n + n;
+  let append = (n, n) => n + n;
 };
 
-let sum = (type a, module M: Sum with type t = a, n: a): a => {
-  M.sumi(n, n);
+module ProdInt = {
+  type t = int;
+  let append = (n, n) => n * n;
+};
+
+let sum = (type a, module M: Monoid with type t = a, n: a): a => {
+  M.append(n, n);
 };
 
 let () = {
-  let res = sum((module SumInt), 10);
-  print_string("Demo " ++ string_of_int(res) ++ "\n");
+  let res1 = sum((module SumInt), 10);
+  print_string("Sum " ++ string_of_int(res1) ++ "\n");
+  let res2 = sum((module ProdInt), 10);
+  print_string("Prod " ++ string_of_int(res2) ++ "\n");
 };
