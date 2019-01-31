@@ -23,11 +23,17 @@ let getKey = (key, map) =>
   | None => ""
   };
 
-let getFromMap = map => (
-  getKey("zona", map),
-  getKey("hub", map),
-  getKey("precio_normal", map) |> int_of_string,
-);
+type csvRecord = {
+  zone: string,
+  hub: string,
+  price: int,
+};
+
+let getFromMap = map => {
+  zone: getKey("zona", map),
+  hub: getKey("hub", map),
+  price: getKey("precio_normal", map) |> int_of_string,
+};
 
 let csvTransform = getFromMap << String.Map.of_alist_exn << Csv.Row.to_assoc;
 
@@ -53,9 +59,9 @@ let () = {
        printf("CSV--------------------------------->\n");
        List.iter(
          ~f=
-           ((zona, hub, price)) =>
+           ({zone, hub, price}) =>
              print_string
-             $ zona
+             $ zone
              ++ ","
              ++ hub
              ++ ","
