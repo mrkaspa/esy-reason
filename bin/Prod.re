@@ -5,7 +5,7 @@ module type Monoid = {
 
 module SumInt = {
   type t = int;
-  let append = (n, n) => n + n;
+  let append = (n1, n2) => n1 + n2;
 };
 
 module ProdInt = {
