@@ -1,4 +1,4 @@
 (executables
-  (names Csv_Bin Prod)
-  (public_names Csv_Bin.exe Prod.exe)
+  (names Csv_Bin Prod Parser)
+  (public_names Csv_Bin.exe Prod.exe Parser.exe)
   (libraries lib core csv))
